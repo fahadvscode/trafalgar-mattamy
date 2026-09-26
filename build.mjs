@@ -138,6 +138,7 @@ function head({ title, description, path, extraLd }) {
 <meta name="keywords" content="hawthorne on trafalgar, hawthorne on trafalgar mattamy, hawthorne on trafalgar milton, mattamy homes trafalgar road">
 <link rel="canonical" href="${url}">
 <link rel="amphtml" href="${ORIGIN}${path === "/" ? "/amp" : "/amp" + path}">
+<link rel="sitemap" type="application/xml" href="${ORIGIN}/sitemap.xml">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
 <meta property="og:type" content="website">
