@@ -1,0 +1,780 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+<meta name="amp-script-src" content="sha384-g7mhuBIwwE3c4Oh0fA8LKLJDqnUk8Leu5i0/Ny/Zantog0YdrXGq9eQTqWaZR81U">
+<script id="lead-script" type="text/plain" target="amp-script">document.addEventListener("submit", async function (event) {
+  var form = event.target;
+  if (!form || String(form.tagName) !== "FORM") return;
+  event.preventDefault();
+  var status = form.querySelector(".form-status");
+  function say(message) {
+    if (status) status.textContent = message;
+  }
+  var honey = form.querySelector('[name="website"]');
+  if (honey && honey.value) return;
+  var first = (form.firstname.value || "").trim();
+  var last = (form.lastname.value || "").trim();
+  var email = (form.email.value || "").trim().toLowerCase();
+  var phone = (form.phone.value || "").trim();
+  var broker = form.querySelector('input[name="is_broker"]:checked');
+  var consent = form.consent && form.consent.checked;
+  if (!first || !last || !email || !phone || !broker) {
+    say("Please complete every required field.");
+    return;
+  }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    say("Enter a valid email address.");
+    return;
+  }
+  var digits = phone.replace(/\D/g, "");
+  if (!/^[\d\s()+-]{10,20}$/.test(phone) || digits.length < 10) {
+    say("Use a phone format such as (416) 000-0000.");
+    return;
+  }
+  if (!consent) {
+    say("Consent is required to register.");
+    return;
+  }
+  var isBroker = broker.value === "yes";
+  var button = form.querySelector('button[type="submit"]');
+  if (button) {
+    button.setAttribute("disabled", "");
+    button.textContent = "Submitting…";
+  }
+  var deletion = false;
+  try {
+    deletion = String(location.search || "").indexOf("request=deletion") !== -1;
+  } catch (ignore) {}
+  try {
+    var response = await fetch("https://cfzuypbljirmibmxpabi.supabase.co/rest/v1/hawthorne_trafalgar_leads", {
+      method: "POST",
+      headers: {
+        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmenV5cGJsamlybWlibXhwYWJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1MTgxMTYsImV4cCI6MjA3MDA5NDExNn0.U0DGF2JPzzV4NmvcgET-R8mVjV_-MhdVeeuLhZp6kes",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmenV5cGJsamlybWlibXhwYWJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1MTgxMTYsImV4cCI6MjA3MDA5NDExNn0.U0DGF2JPzzV4NmvcgET-R8mVjV_-MhdVeeuLhZp6kes",
+        "Content-Type": "application/json",
+        Prefer: "return=minimal"
+      },
+      body: JSON.stringify({
+        firstname: first,
+        lastname: last,
+        email: email,
+        phone: phone,
+        is_broker: isBroker,
+        project_name: "Hawthorne on Trafalgar",
+        source: "hawthorne-trafalgar-landing",
+        form_location: form.getAttribute("data-form-location") || "bottom-section",
+        status: "new",
+        priority: "high",
+        notes: "Broker: " + (isBroker ? "Yes" : "No") + "." + (deletion ? " DELETION REQUEST." : "")
+      })
+    });
+    if (!response.ok) throw new Error("save");
+    say("You're registered for Hawthorne on Trafalgar.");
+    var next = form.querySelector(".amp-next");
+    if (next) next.removeAttribute("hidden");
+  } catch (error) {
+    say("Something went wrong submitting your registration. Please try again.");
+    if (button) {
+      button.removeAttribute("disabled");
+      button.textContent = "Register for VIP Access";
+    }
+  }
+}, true);</script>
+<title>Hawthorne on Trafalgar Location | Mattamy Homes Milton</title>
+<meta name="description" content="Explore the Hawthorne on Trafalgar location in Milton: Trafalgar Secondary Plan area, Milton GO, Hwy 401/407, schools, and nearby conservation lands.">
+<meta name="keywords" content="hawthorne on trafalgar, hawthorne on trafalgar mattamy, hawthorne on trafalgar milton, mattamy homes trafalgar road">
+<link rel="canonical" href="https://trafalgarmattamy.com/location">
+<meta property="og:title" content="Hawthorne on Trafalgar Location | Mattamy Homes Milton">
+<meta property="og:description" content="Explore the Hawthorne on Trafalgar location in Milton: Trafalgar Secondary Plan area, Milton GO, Hwy 401/407, schools, and nearby conservation lands.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://trafalgarmattamy.com/location">
+<meta property="og:image" content="https://trafalgarmattamy.com/images/og-hawthorne-trafalgar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://trafalgarmattamy.com/images/og-hawthorne-trafalgar.jpg">
+<link rel="icon" href="https://trafalgarmattamy.com/images/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<style amp-custom>:root {
+  --brand-primary: #2f4a3c;
+  --brand-deep: #1b2e24;
+  --brand-accent: #a9714b;
+  --surface: #faf7f1;
+  --surface-alt: #f0ebe0;
+  --text-primary: #1e251f;
+  --text-muted: #3f4a42;
+  --border: #dad3c4;
+  --white: #fffdf8;
+  --focus: #8a4e2c;
+  --header-h: 76px;
+  --max: 1200px;
+  --prose: 68ch;
+  --shadow: 0 16px 40px rgba(27, 46, 36, 0.08);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: Inter, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--brand-primary); }
+
+a:hover { color: var(--brand-deep); }
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  background: var(--white);
+  color: var(--brand-deep);
+  padding: 8px 12px;
+  z-index: 20;
+}
+
+.skip-link:focus { top: 12px; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--brand-deep);
+  color: var(--white);
+  border-bottom: 3px solid var(--brand-accent);
+}
+
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: var(--header-h);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.wordmark {
+  color: var(--white);
+  text-decoration: none;
+  font-family: "Instrument Sans", Inter, sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  border-bottom: 2px solid var(--brand-accent);
+  padding-bottom: 3px;
+}
+
+.wordmark:hover { color: var(--white); }
+
+.nav-toggle {
+  margin-left: auto;
+  display: none;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 253, 248, 0.35);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.nav-check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.site-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.site-nav a {
+  color: #f3efe6;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--white);
+  box-shadow: inset 0 -2px 0 var(--brand-accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.btn-accent {
+  background: var(--brand-accent);
+  color: var(--brand-deep);
+}
+
+.btn-accent:hover { background: #c48962; color: var(--brand-deep); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 253, 248, 0.45);
+}
+
+.btn-ghost:hover { background: rgba(255, 253, 248, 0.08); color: var(--white); }
+
+.btn-deep {
+  background: var(--brand-primary);
+  color: var(--white);
+}
+
+.btn-deep:hover { background: var(--brand-deep); color: var(--white); }
+
+.hero {
+  position: relative;
+  min-height: 640px;
+  display: grid;
+  align-items: end;
+  color: var(--white);
+  background: var(--brand-deep);
+  overflow: hidden;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 46, 36, 0.58);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 72px 24px 64px;
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 253, 248, 0.45);
+  padding: 6px 10px;
+  margin-bottom: 16px;
+}
+
+h1, h2, h3 {
+  font-family: "Instrument Sans", Inter, sans-serif;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin: 0 0 16px; max-width: 16ch; }
+
+.hero p.lede {
+  max-width: 42rem;
+  font-size: 1.15rem;
+  margin: 0 0 24px;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.hero-note {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  max-width: 46rem;
+  color: #efe8dc;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.wrap-narrow { max-width: 860px; }
+
+section.band { background: var(--surface); }
+
+section.band-alt { background: var(--surface-alt); }
+
+.eyebrow {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-accent);
+  margin: 0 0 8px;
+}
+
+h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 0 0 16px; }
+
+h3 { font-size: 1.25rem; margin: 0 0 8px; }
+
+.prose { max-width: var(--prose); }
+
+.prose p, .stack p { margin: 0 0 16px; }
+
+.facts {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.facts th,
+.facts td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.facts th {
+  width: 34%;
+  font-weight: 600;
+  background: #f7f3ea;
+}
+
+.card-grid, .split {
+  display: grid;
+  gap: 20px;
+}
+
+.card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.card { overflow: hidden; }
+
+.card img {
+  width: calc(100% + 48px);
+  max-width: none;
+  height: 210px;
+  object-fit: cover;
+  margin: -24px -24px 16px;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend { font-weight: 600; margin-bottom: 8px; }
+
+.choice-row { display: flex; gap: 20px; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid a { color: inherit; text-decoration: none; }
+
+.gallery-grid img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.gallery-grid figcaption {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(27, 46, 36, 0.92);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+#lightbox[hidden] { display: none; }
+
+#lightbox img {
+  width: auto;
+  height: auto;
+  max-width: min(1100px, 100%);
+  max-height: 84vh;
+}
+
+.card, .panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.card p:last-child, .panel p:last-child { margin-bottom: 0; }
+
+.muted { color: var(--text-muted); }
+
+.small { font-size: 0.92rem; }
+
+.map-frame {
+  border: 1px solid var(--border);
+  background: var(--white);
+  min-height: 420px;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+
+.gallery-empty {
+  border: 1px dashed var(--border);
+  background: var(--white);
+  padding: 48px 24px;
+  text-align: left;
+}
+
+.site-footer {
+  background: var(--brand-deep);
+  color: #efe8dc;
+  padding: 48px 24px 120px;
+}
+
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.footer-nav a { color: #efe8dc; }
+
+.disclaimer { max-width: 75ch; font-size: 0.92rem; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.field.full { grid-column: 1 / -1; }
+
+label { font-weight: 600; font-size: 0.95rem; }
+
+input, select {
+  font: inherit;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 400;
+}
+
+.check input { min-height: auto; margin-top: 4px; }
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status { min-height: 1.4em; margin: 8px 0 0; }
+
+.form-status.err { color: #8a2b1f; font-weight: 600; }
+
+.crumbs { font-size: 0.9rem; margin: 0 0 18px; }
+
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.crumbs li:not(:last-child)::after { content: "/"; margin-left: 8px; color: var(--text-muted); }
+
+.sticky-cta {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  background: var(--brand-deep);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  border-top: 2px solid var(--brand-accent);
+}
+
+.sticky-cta a { width: 100%; }
+
+details.faq {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  padding: 0;
+}
+
+details.faq:last-of-type { border-bottom: 1px solid var(--border); }
+
+details.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Instrument Sans", Inter, sans-serif;
+  padding: 16px 18px;
+}
+
+details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+@media (max-width: 860px) {
+  .nav-toggle { display: inline-flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--brand-deep);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 16px 16px;
+    gap: 4px;
+  }
+  .site-nav.open,
+  .nav-check:checked ~ .site-nav { display: flex; }
+  .site-nav a { padding: 10px 4px; }
+  .card-grid, .form-grid, .split, .gallery-grid { grid-template-columns: 1fr; }
+  .wrap { padding: 64px 20px; }
+  .hero-copy { padding-bottom: 108px; }
+  .sticky-cta { display: block; }
+  .facts th { width: 42%; }
+  h1 { max-width: none; }
+}
+
+@media (min-width: 861px) {
+  .split { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "name": "Hawthorne on Trafalgar — Site Location",
+      "dateModified": "2026-09-26",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6119 Trafalgar Road",
+        "addressLocality": "Milton",
+        "addressRegion": "ON",
+        "postalCode": "L9E 0Z6",
+        "addressCountry": "CA"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "dateModified": "2026-09-26",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://trafalgarmattamy.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Location",
+          "item": "https://trafalgarmattamy.com/location"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="/amp">Hawthorne on Trafalgar</a>
+    <input class="nav-check" id="nav-check" type="checkbox"><label class="nav-toggle" for="nav-check">Menu</label>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="/amp">Home</a><a href="/amp/floor-plans">Floor Plans</a><a href="/amp/pricing">Pricing</a><a href="/amp/location" aria-current="page">Location</a><a href="/amp/gallery">Gallery</a><a href="/amp/faq">FAQ</a>
+      <a class="btn btn-accent" href="/amp/register">Register for VIP Access</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/amp">Home</a></li><li>Location</li></ol></nav>
+    <p class="eyebrow">Milton</p>
+    <h1>Hawthorne on Trafalgar Location</h1>
+    <div class="prose">
+      <h2>Where exactly is Hawthorne on Trafalgar located?</h2>
+      <p>Hawthorne on Trafalgar is located at 6119 Trafalgar Road in Milton, Ontario, within Halton Region. The 77.8-hectare site falls under the Town of Milton's Trafalgar Secondary Plan and sits adjacent to Natural Heritage System lands along the Sixteen Mile Creek corridor.</p>
+    </div>
+    <div class="map-frame reveal">
+      <amp-iframe width="600" height="420" layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" frameborder="0" src="https://maps.google.com/maps?q=6119%20Trafalgar%20Road%20Milton%20ON%20L9E%200Z6&amp;z=14&amp;output=embed"><amp-img layout="fill" src="https://trafalgarmattamy.com/images/og-hawthorne-trafalgar.jpg" placeholder alt="Map of 6119 Trafalgar Road, Milton"></amp-img></amp-iframe>
+    </div>
+    <div class="prose reveal">
+      <h2>The address inside the Trafalgar Secondary Plan</h2>
+      <p>The civic address is 6119 Trafalgar Road, Milton, ON L9E 0Z6. The legal description on the Town of Milton zoning application is part of Lot 6 and Lot 7, Concession 8. The recorded site area is 77.8 hectares. Those three facts — street address, legal description, and area — are the stable way to identify the land while marketing names and sales phases are still forming.</p>
+      <p>The governing planning framework is the Trafalgar Secondary Plan. The zoning application is written to align with that plan. Subdivision application 24T-25009/M and zoning application Z-21/25 are the municipal file numbers. A statutory public meeting was held on February 9, 2026, and a technical report recommending approval was scheduled for Council consideration on July 13, 2026. Approval status can move after that date; this page records the status as published in those municipal records and on the builder's project page as of September 26, 2026.</p>
+      <p>Proposed land uses in the zoning application are broader than the two products Mattamy is marketing. The file describes single detached homes, townhouses, future mid-density and mixed-use buildings, a school, parks, and future commercial uses. Mattamy's own project page narrows the current sales message to WideLot™ townhomes and detached homes, and describes a community planned with integrated future schools, parks, and gathering spaces. Both statements can be true at once: the planning file sets out a wider land-use mix, and the marketed housing types are the two collections named so far.</p>
+      <h2>Transit</h2>
+      <p>Mattamy's project page identifies Milton GO Station, with a rail connection toward downtown Toronto, as the transit reference for Hawthorne on Trafalgar. This page does not state a drive time or a walk time. Those distances have not been independently measured for this build. Until they are confirmed with a mapping measurement, the accurate phrasing is that the station is a short drive from the Trafalgar Road site. GO rail from Milton runs toward Union Station in downtown Toronto; the frequency and travel time of that train are set by the rail operator and should be checked on the day of travel.</p>
+      <h2>Highways</h2>
+      <p>Highway 401 and Highway 407 are both accessible from the area, according to the builder's location notes. No minute count is published here, because a minute count that has not been measured would be a guess. For search and for planning a visit, the useful fact is access, not a stopwatch figure: both highways are part of the regional road network serving north Milton and the Trafalgar Road corridor.</p>
+      <h2 id="schools">Schools</h2>
+      <p>The Town of Milton, including the Trafalgar Road area, is served by the Halton District School Board for public schools and the Halton Catholic District School Board for Catholic schools. Those are the two boards with jurisdiction. Named schools assigned to this exact site have not been confirmed. <!-- UNVERIFIED: confirm before launch --> Boundaries for a community that is still in approvals are often unsettled, and a school named too early can be wrong by the time families move in. The planning documents do propose a school as a land use on the site itself, which is a different fact from a boundary assignment. See <a href="/amp/faq#schools">schools serving the area</a> for the short answer, and confirm boundaries with the boards before relying on them.</p>
+      <h2>Recreation and conservation</h2>
+      <p>Rattlesnake Point is a Conservation Halton property on the Niagara Escarpment, known for lookout points above the surrounding farmland. Crawford Lake, also operated through Conservation Halton, is a rare meromictic lake with a boardwalk and an interpretive setting that includes reconstructed longhouses. Glen Eden Ski &amp; Snowboard Centre is the winter recreation hill associated with the Kelso area, offering skiing and snowboarding in season. Mattamy's Hawthorne on Trafalgar page names all three as nearby conservation and recreation references. None of them is inside the 77.8-hectare site. They describe the wider landscape the project is marketed against.</p>
+      <p>Golf named on the same project page includes Wyldewood Golf &amp; Country Club, Royal Ontario Golf Club, and Piper's Heath Golf Links. Each is an existing golf facility in the broader Milton and Halton area, not an amenity built as part of Hawthorne on Trafalgar. Membership, green fees, and whether a club is accepting players are set by those clubs.</p>
+      <h2>Retail</h2>
+      <p>Toronto Premium Outlets, in nearby Halton Hills, is the outlet centre referenced in the builder's location copy. The Erin Mills shopping area in Mississauga is the other retail reference. Both are existing destinations. Neither is a retail block inside this subdivision. Future commercial uses are proposed in the Town of Milton zoning application for the site, and those uses are not yet a named plaza or a tenant list.</p>
+      <h2>Natural heritage and the site plan</h2>
+      <p>The site is adjacent to Natural Heritage System lands and the Sixteen Mile Creek wetlands corridor. That adjacency is why the community is described as nature-adjacent rather than as an infill block on an already urban street. Mattamy's project description says the community is designed with integrated future schools, parks, and gathering spaces. The zoning application likewise lists parks among the proposed land uses. Living beside a wetland corridor usually means parts of the land are protected, buffered, or left as open space, and that roads and lots are arranged around that constraint. The detailed site plan layers — which edges are buffer, which blocks face a park, which streets are through-roads — have not been published as a resident-facing map on this site.</p>
+      <p>Taken together, the location case for Hawthorne on Trafalgar is geographic and procedural, not a set of commute claims. The land is a 77.8-hectare parcel at 6119 Trafalgar Road inside the Trafalgar Secondary Plan, beside the Sixteen Mile Creek corridor, with Milton GO, Highway 401, and Highway 407 described as accessible, and with Conservation Halton landscapes named nearby. Sales have not opened. For the questions people ask next — price, deposit, and launch — use the pricing and FAQ pages, or <a href="/amp/register">Register for VIP Access</a>.</p>
+      <h2>What the municipal record does not decide</h2>
+      <p>A zoning application and a subdivision file describe land use. They do not set the purchase price, the deposit calendar, or the day a buyer can close. Those commercial terms belong to Mattamy Homes and have not been released for Hawthorne on Trafalgar. Reading the February 9, 2026 public meeting, or the July 13, 2026 Council date, as a launch date would mix two calendars. One calendar is municipal. The other is sales, and the sales calendar still says Coming Soon.</p>
+      <p>The verified address is the street number: 6119 Trafalgar Road, Milton, ON L9E 0Z6. Use that number with the map above. The development entity on the zoning application is Mattamy (White Squadron) Development Corporation. The applicant on the municipal form is White Squadron Development Corporation, with Korsiak Urban Planning as planning consultant. Those names identify the file. They are not a sales office you can walk into today.</p>
+    </div>
+    <div class="reveal"><table class="facts">
+    <caption class="small muted">Quick facts for Hawthorne on Trafalgar. Information current as of September 26, 2026.</caption>
+    <tbody>
+      <tr><th scope="row">Builder</th><td>Mattamy Homes</td></tr>
+      <tr><th scope="row">Type</th><td>WideLot™ townhomes and detached homes</td></tr>
+      <tr><th scope="row">Address</th><td>6119 Trafalgar Road, Milton, ON L9E 0Z6</td></tr>
+      <tr><th scope="row">Municipality</th><td>Town of Milton, Halton Region, Ontario</td></tr>
+      <tr><th scope="row">Site area</th><td>77.8 hectares</td></tr>
+      <tr><th scope="row">Planning framework</th><td>Trafalgar Secondary Plan</td></tr>
+      <tr><th scope="row">Approvals status</th><td>Statutory public meeting held Feb 9, 2026; Council consideration scheduled July 13, 2026</td></tr>
+      <tr><th scope="row">Starting price</th><td>To be announced <!-- UNVERIFIED: confirm before launch --></td></tr>
+      <tr><th scope="row">Deposit structure</th><td>To be announced <!-- UNVERIFIED: confirm before launch --></td></tr>
+      <tr><th scope="row">Occupancy</th><td>To be announced <!-- UNVERIFIED: confirm before launch --></td></tr>
+      <tr><th scope="row">Sales status</th><td>Coming Soon</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">Prices, sizes, specifications, and availability are subject to change without notice. E.&amp;O.E. Information current as of September 26, 2026.</p></div>
+  </div></main>
+<section class="band-alt" aria-labelledby="footer-register-heading"><div class="wrap"><h2 id="footer-register-heading">Register for VIP Access</h2><p class="prose">Registration is free. You will be contacted when Mattamy Homes releases official pricing, floor plans, and a sales launch date for Hawthorne on Trafalgar.</p><amp-script layout="container" script="lead-script"><form class="vip-form" method="get" action="https://trafalgarmattamy.com/register" target="_top" id="footer-form" data-form-location="bottom-section" novalidate>
+    <div class="form-grid">
+      <div class="field"><label for="footer-form-firstname">First name</label><input id="footer-form-firstname" name="firstname" autocomplete="given-name" required></div>
+      <div class="field"><label for="footer-form-lastname">Last name</label><input id="footer-form-lastname" name="lastname" autocomplete="family-name" required></div>
+      <div class="field"><label for="footer-form-email">Email</label><input id="footer-form-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="footer-form-phone">Phone</label><input id="footer-form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(416) 000-0000" required></div>
+      <fieldset class="field full">
+        <legend>Are you a broker?</legend>
+        <div class="choice-row">
+          <label class="check" for="footer-form-broker-yes"><input id="footer-form-broker-yes" name="is_broker" type="radio" value="yes" required> Yes</label>
+          <label class="check" for="footer-form-broker-no"><input id="footer-form-broker-no" name="is_broker" type="radio" value="no" required> No</label>
+        </div>
+      </fieldset>
+      <div class="field full"><label class="check" for="footer-form-consent"><input id="footer-form-consent" name="consent" type="checkbox"> I agree to receive updates about Hawthorne on Trafalgar. You can unsubscribe anytime.</label></div>
+      <div class="honeypot" aria-hidden="true"><label for="footer-form-website">Website</label><input id="footer-form-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="field full"><button class="btn btn-accent" type="submit">Register for VIP Access</button><p class="form-status" role="status"></p></div>
+    </div>
+  <p><a class="amp-next" href="/amp/thank-you" hidden>View your confirmation</a></p></form></amp-script></div></section>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/amp">Home</a><a href="/amp/floor-plans">Floor Plans</a><a href="/amp/pricing">Pricing</a><a href="/amp/location">Location</a><a href="/amp/gallery">Gallery</a><a href="/amp/faq">FAQ</a><a href="/amp/register">Register for VIP Access</a><a href="/amp/privacy">Privacy</a><a href="/amp/terms">Terms</a>
+    </nav>
+    <p>Last updated: September 26, 2026</p>
+    <p class="disclaimer">This is an independent information and registration website for Hawthorne on Trafalgar. It is not the official website of Mattamy Homes and is not affiliated with or endorsed by the builder. All renderings, pricing, sizes, and specifications are for illustration only and are subject to change without notice. E.&amp;O.E.</p>
+  </div>
+</footer>
+<div class="sticky-cta"><a class="btn btn-accent" href="/amp/register">Register for VIP Access</a></div>
+
+
+
+</body>
+</html>

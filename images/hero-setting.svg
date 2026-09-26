@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustrative woodland and creek corridor">
+  <rect width="1600" height="900" fill="#8EAE98"/>
+  <path d="M0 420 C220 360 380 300 560 340 C760 386 900 260 1120 300 C1320 336 1460 280 1600 320 L1600 900 L0 900 Z" fill="#5E7D68"/>
+  <path d="M0 560 C240 500 420 620 680 560 C940 500 1080 470 1320 530 C1460 566 1540 520 1600 540 L1600 900 L0 900 Z" fill="#3E5C4A"/>
+  <path d="M0 700 C260 640 480 760 760 700 C1040 640 1200 690 1600 640 L1600 900 L0 900 Z" fill="#2A4034"/>
+  <path d="M420 900 C520 760 600 640 760 700 C920 760 1040 820 1180 760 C1320 700 1400 780 1600 740 L1600 900 Z" fill="#C4A27A" opacity="0.55"/>
+  <circle cx="260" cy="470" r="90" fill="#2F4A3C"/>
+  <circle cx="360" cy="420" r="110" fill="#24382E"/>
+  <circle cx="180" cy="530" r="70" fill="#355244"/>
+  <circle cx="1180" cy="450" r="100" fill="#2F4A3C"/>
+  <circle cx="1300" cy="510" r="72" fill="#1B2E24"/>
+  <path d="M640 900 C760 820 860 760 980 800 C1120 846 1240 780 1360 820" fill="none" stroke="#E7D7C2" stroke-width="10" opacity="0.8"/>
+</svg>
