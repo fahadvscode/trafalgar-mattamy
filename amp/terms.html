@@ -273,7 +273,7 @@ a:hover { color: var(--brand-deep); }
   position: relative;
   min-height: 640px;
   display: grid;
-  align-items: end;
+  align-items: center;
   color: var(--white);
   background: var(--brand-deep);
   overflow: hidden;
@@ -301,9 +301,34 @@ a:hover { color: var(--brand-deep); }
   z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 72px 24px 64px;
+  padding: 48px 24px 56px;
   width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: 28px 36px;
+  align-items: center;
 }
+
+.hero-panel {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 22px 20px 16px;
+  box-shadow: var(--shadow);
+}
+
+.hero-panel h2 {
+  font-size: 1.45rem;
+  margin: 0 0 6px;
+}
+
+.hero-panel > p {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.hero-panel .btn { width: 100%; }
 
 .badge {
   display: inline-block;
@@ -323,7 +348,7 @@ h1, h2, h3 {
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin: 0 0 16px; max-width: 16ch; }
+h1 { font-size: clamp(2rem, 4vw, 3.15rem); margin: 0 0 16px; max-width: 16ch; }
 
 .hero p.lede {
   max-width: 42rem;
@@ -526,16 +551,26 @@ input, select {
   background: var(--white);
   color: var(--text-primary);
   border-radius: 4px;
+  max-width: 100%;
 }
+
+.field input,
+.field select { width: 100%; }
 
 .check {
   display: flex;
   gap: 10px;
   align-items: flex-start;
   font-weight: 400;
+  min-height: 44px;
 }
 
-.check input { min-height: auto; margin-top: 4px; }
+.check input {
+  min-height: 22px;
+  width: 22px;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
 
 .honeypot {
   position: absolute;
@@ -610,6 +645,11 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+@media (max-width: 980px) {
+  .hero-copy { grid-template-columns: 1fr; }
+  .hero { min-height: 0; align-items: stretch; }
+}
+
 @media (max-width: 860px) {
   .nav-toggle { display: inline-flex; }
   .site-nav {
@@ -627,9 +667,12 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
   .site-nav.open,
   .nav-check:checked ~ .site-nav { display: flex; }
   .site-nav a { padding: 10px 4px; }
-  .card-grid, .form-grid, .split, .gallery-grid { grid-template-columns: 1fr; }
+  .card-grid, .form-grid, .split, .gallery-grid, .hero-copy { grid-template-columns: 1fr; }
   .wrap { padding: 64px 20px; }
-  .hero-copy { padding-bottom: 108px; }
+  .hero { min-height: 0; align-items: stretch; }
+  .hero-copy { padding: 28px 16px 128px; }
+  .hero-panel { padding: 18px 16px 14px; }
+  .hero-actions .btn { width: 100%; }
   .sticky-cta { display: block; }
   .facts th { width: 42%; }
   h1 { max-width: none; }

@@ -254,8 +254,8 @@ ${body}
 </html>`;
 }
 
-function page({ file, path, title, description, active, main, extraLd, pageId, showForm = true, sticky = true }) {
-  const stickyBar = sticky ? `<div class="sticky-cta"><a class="btn btn-accent" href="/register">Register for VIP Access</a></div>` : "";
+function page({ file, path, title, description, active, main, extraLd, pageId, showForm = true, sticky = true, stickyHref = "/register" }) {
+  const stickyBar = sticky ? `<div class="sticky-cta"><a class="btn btn-accent" href="${stickyHref}">Register for VIP Access</a></div>` : "";
   const module = showForm || file === "register.html" ? `<script type="module" src="/js/supabase-client.js"></script>` : "";
   const html = `${head({ title, description, path, extraLd })}
 <body data-page="${pageId}">
@@ -327,6 +327,7 @@ texts.push(page({
   active: "home",
   pageId: "home",
   extraLd: [indexLd],
+  stickyHref: "#hero-form",
   main: `<main id="main">
   <section class="hero">
     <div class="hero-media">
@@ -334,14 +335,20 @@ texts.push(page({
       <div class="hero-scrim"></div>
     </div>
     <div class="hero-copy">
-      <p class="badge">Coming Soon — Registration Open</p>
-      <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
-      <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
-      <div class="hero-actions">
-        <a class="btn btn-accent" href="/register">Register for VIP Access</a>
-        <a class="btn btn-ghost" href="/floor-plans">See Home Types</a>
+      <div class="hero-intro">
+        <p class="badge">Coming Soon — Registration Open</p>
+        <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
+        <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
+        <div class="hero-actions">
+          <a class="btn btn-ghost" href="/floor-plans">See Home Types</a>
+        </div>
+        <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
       </div>
-      <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
+      <div class="hero-panel">
+        <h2>Register for VIP Access</h2>
+        <p>Registration is free. You will be contacted when Mattamy Homes releases official pricing and floor plans.</p>
+        ${form("hero-form", "hero")}
+      </div>
     </div>
   </section>
   <section class="band" aria-labelledby="overview-heading">

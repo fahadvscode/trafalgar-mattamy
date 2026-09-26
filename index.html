@@ -110,14 +110,37 @@
       <div class="hero-scrim"></div>
     </div>
     <div class="hero-copy">
-      <p class="badge">Coming Soon — Registration Open</p>
-      <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
-      <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
-      <div class="hero-actions">
-        <a class="btn btn-accent" href="/register">Register for VIP Access</a>
-        <a class="btn btn-ghost" href="/floor-plans">See Home Types</a>
+      <div class="hero-intro">
+        <p class="badge">Coming Soon — Registration Open</p>
+        <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
+        <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
+        <div class="hero-actions">
+          <a class="btn btn-ghost" href="/floor-plans">See Home Types</a>
+        </div>
+        <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
       </div>
-      <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
+      <div class="hero-panel">
+        <h2>Register for VIP Access</h2>
+        <p>Registration is free. You will be contacted when Mattamy Homes releases official pricing and floor plans.</p>
+        <form class="vip-form" id="hero-form" data-form-location="hero" novalidate>
+    <div class="form-grid">
+      <div class="field"><label for="hero-form-firstname">First name</label><input id="hero-form-firstname" name="firstname" autocomplete="given-name" required></div>
+      <div class="field"><label for="hero-form-lastname">Last name</label><input id="hero-form-lastname" name="lastname" autocomplete="family-name" required></div>
+      <div class="field"><label for="hero-form-email">Email</label><input id="hero-form-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="hero-form-phone">Phone</label><input id="hero-form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(416) 000-0000" required></div>
+      <fieldset class="field full">
+        <legend>Are you a broker?</legend>
+        <div class="choice-row">
+          <label class="check" for="hero-form-broker-yes"><input id="hero-form-broker-yes" name="is_broker" type="radio" value="yes" required> Yes</label>
+          <label class="check" for="hero-form-broker-no"><input id="hero-form-broker-no" name="is_broker" type="radio" value="no" required> No</label>
+        </div>
+      </fieldset>
+      <div class="field full"><label class="check" for="hero-form-consent"><input id="hero-form-consent" name="consent" type="checkbox"> I agree to receive updates about Hawthorne on Trafalgar. You can unsubscribe anytime.</label></div>
+      <div class="honeypot" aria-hidden="true"><label for="hero-form-website">Website</label><input id="hero-form-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="field full"><button class="btn btn-accent" type="submit">Register for VIP Access</button><p class="form-status" role="status"></p></div>
+    </div>
+  </form>
+      </div>
     </div>
   </section>
   <section class="band" aria-labelledby="overview-heading">
@@ -222,7 +245,7 @@
     <p class="disclaimer">This is an independent information and registration website for Hawthorne on Trafalgar. It is not the official website of Mattamy Homes and is not affiliated with or endorsed by the builder. All renderings, pricing, sizes, and specifications are for illustration only and are subject to change without notice. E.&amp;O.E.</p>
   </div>
 </footer>
-<div class="sticky-cta"><a class="btn btn-accent" href="/register">Register for VIP Access</a></div>
+<div class="sticky-cta"><a class="btn btn-accent" href="#hero-form">Register for VIP Access</a></div>
 <script src="/js/main.js" defer></script>
 <script type="module" src="/js/supabase-client.js"></script>
 </body>

@@ -273,7 +273,7 @@ a:hover { color: var(--brand-deep); }
   position: relative;
   min-height: 640px;
   display: grid;
-  align-items: end;
+  align-items: center;
   color: var(--white);
   background: var(--brand-deep);
   overflow: hidden;
@@ -301,9 +301,34 @@ a:hover { color: var(--brand-deep); }
   z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 72px 24px 64px;
+  padding: 48px 24px 56px;
   width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: 28px 36px;
+  align-items: center;
 }
+
+.hero-panel {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 22px 20px 16px;
+  box-shadow: var(--shadow);
+}
+
+.hero-panel h2 {
+  font-size: 1.45rem;
+  margin: 0 0 6px;
+}
+
+.hero-panel > p {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.hero-panel .btn { width: 100%; }
 
 .badge {
   display: inline-block;
@@ -323,7 +348,7 @@ h1, h2, h3 {
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin: 0 0 16px; max-width: 16ch; }
+h1 { font-size: clamp(2rem, 4vw, 3.15rem); margin: 0 0 16px; max-width: 16ch; }
 
 .hero p.lede {
   max-width: 42rem;
@@ -526,16 +551,26 @@ input, select {
   background: var(--white);
   color: var(--text-primary);
   border-radius: 4px;
+  max-width: 100%;
 }
+
+.field input,
+.field select { width: 100%; }
 
 .check {
   display: flex;
   gap: 10px;
   align-items: flex-start;
   font-weight: 400;
+  min-height: 44px;
 }
 
-.check input { min-height: auto; margin-top: 4px; }
+.check input {
+  min-height: 22px;
+  width: 22px;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
 
 .honeypot {
   position: absolute;
@@ -610,6 +645,11 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+@media (max-width: 980px) {
+  .hero-copy { grid-template-columns: 1fr; }
+  .hero { min-height: 0; align-items: stretch; }
+}
+
 @media (max-width: 860px) {
   .nav-toggle { display: inline-flex; }
   .site-nav {
@@ -627,9 +667,12 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
   .site-nav.open,
   .nav-check:checked ~ .site-nav { display: flex; }
   .site-nav a { padding: 10px 4px; }
-  .card-grid, .form-grid, .split, .gallery-grid { grid-template-columns: 1fr; }
+  .card-grid, .form-grid, .split, .gallery-grid, .hero-copy { grid-template-columns: 1fr; }
   .wrap { padding: 64px 20px; }
-  .hero-copy { padding-bottom: 108px; }
+  .hero { min-height: 0; align-items: stretch; }
+  .hero-copy { padding: 28px 16px 128px; }
+  .hero-panel { padding: 18px 16px 14px; }
+  .hero-actions .btn { width: 100%; }
   .sticky-cta { display: block; }
   .facts th { width: 42%; }
   h1 { max-width: none; }
@@ -725,14 +768,37 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
       <div class="hero-scrim"></div>
     </div>
     <div class="hero-copy">
-      <p class="badge">Coming Soon — Registration Open</p>
-      <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
-      <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
-      <div class="hero-actions">
-        <a class="btn btn-accent" href="/amp/register">Register for VIP Access</a>
-        <a class="btn btn-ghost" href="/amp/floor-plans">See Home Types</a>
+      <div class="hero-intro">
+        <p class="badge">Coming Soon — Registration Open</p>
+        <h1>Hawthorne on Trafalgar — New Homes Coming to Milton, Ontario</h1>
+        <p class="lede">Hawthorne on Trafalgar Mattamy Homes community: WideLot™ townhomes and detached homes at 6119 Trafalgar Road — an independent information and VIP registration resource.</p>
+        <div class="hero-actions">
+          <a class="btn btn-ghost" href="/amp/floor-plans">See Home Types</a>
+        </div>
+        <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
       </div>
-      <p class="hero-note">Community photography for Hawthorne on Trafalgar by Mattamy Homes. Floor plans and a sales gallery have not been released.</p>
+      <div class="hero-panel">
+        <h2>Register for VIP Access</h2>
+        <p>Registration is free. You will be contacted when Mattamy Homes releases official pricing and floor plans.</p>
+        <amp-script layout="container" script="lead-script"><form class="vip-form" method="get" action="https://trafalgarmattamy.com/register" target="_top" id="hero-form" data-form-location="hero" novalidate>
+    <div class="form-grid">
+      <div class="field"><label for="hero-form-firstname">First name</label><input id="hero-form-firstname" name="firstname" autocomplete="given-name" required></div>
+      <div class="field"><label for="hero-form-lastname">Last name</label><input id="hero-form-lastname" name="lastname" autocomplete="family-name" required></div>
+      <div class="field"><label for="hero-form-email">Email</label><input id="hero-form-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="hero-form-phone">Phone</label><input id="hero-form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(416) 000-0000" required></div>
+      <fieldset class="field full">
+        <legend>Are you a broker?</legend>
+        <div class="choice-row">
+          <label class="check" for="hero-form-broker-yes"><input id="hero-form-broker-yes" name="is_broker" type="radio" value="yes" required> Yes</label>
+          <label class="check" for="hero-form-broker-no"><input id="hero-form-broker-no" name="is_broker" type="radio" value="no" required> No</label>
+        </div>
+      </fieldset>
+      <div class="field full"><label class="check" for="hero-form-consent"><input id="hero-form-consent" name="consent" type="checkbox"> I agree to receive updates about Hawthorne on Trafalgar. You can unsubscribe anytime.</label></div>
+      <div class="honeypot" aria-hidden="true"><label for="hero-form-website">Website</label><input id="hero-form-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="field full"><button class="btn btn-accent" type="submit">Register for VIP Access</button><p class="form-status" role="status"></p></div>
+    </div>
+  <p><a class="amp-next" href="/amp/thank-you" hidden>View your confirmation</a></p></form></amp-script>
+      </div>
     </div>
   </section>
   <section class="band" aria-labelledby="overview-heading">
@@ -837,7 +903,7 @@ details.faq p { margin: 0; padding: 0 18px 16px; max-width: 75ch; }
     <p class="disclaimer">This is an independent information and registration website for Hawthorne on Trafalgar. It is not the official website of Mattamy Homes and is not affiliated with or endorsed by the builder. All renderings, pricing, sizes, and specifications are for illustration only and are subject to change without notice. E.&amp;O.E.</p>
   </div>
 </footer>
-<div class="sticky-cta"><a class="btn btn-accent" href="/amp/register">Register for VIP Access</a></div>
+<div class="sticky-cta"><a class="btn btn-accent" href="#hero-form">Register for VIP Access</a></div>
 
 
 
