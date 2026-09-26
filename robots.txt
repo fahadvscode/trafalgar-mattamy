@@ -1,3 +1,9 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -35,3 +41,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://trafalgarmattamy.com/sitemap.xml
+Sitemap: https://trafalgarmattamy.com/sitemap.txt
